@@ -32,10 +32,22 @@ function sauvegarder() {
     compteurEl.textContent = compteur;
 }
 
+function reset() {
+    compteur = 0;
+    compteurEl.textContent = compteur;
+    sauvegardeEl.innerHTML = "";
+    localStorage.removeItem("captures");
+    mettreAJourCouleurCompteur();
+}
+document.getElementById("reset-btn").style.backgroundColor = "white";
+document.getElementById("reset-btn").style.color = "black";
+
 const capturerBtn = document.getElementById("capturer-btn");
 const sauvegarderBtn = document.getElementById("sauvegarder-btn");
+const resetBtn = document.getElementById("reset-btn");
 capturerBtn.addEventListener("click", capturer);
 sauvegarderBtn.addEventListener("click", sauvegarder);
+resetBtn.addEventListener("click", reset);
 
 window.addEventListener("load", () => { // Attendre que la page soit chargée pour exécuter le code
     sauvegardeEl.innerHTML = localStorage.getItem("captures") || ""; // Charger les captures sauvegardées ou une chaîne vide
